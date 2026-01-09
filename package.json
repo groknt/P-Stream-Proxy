@@ -16,19 +16,19 @@
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "h3": "^1.15.1",
+    "h3": "^1.15.4",
     "jose": "^5.10.0",
-    "nitropack": "^2.11.9"
+    "nitropack": "^2.13.0"
   },
   "devDependencies": {
-    "@rollup/wasm-node": "^4.40.0",
+    "@rollup/wasm-node": "^4.55.1",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.10.0",
-    "eslint-plugin-prettier": "^5.2.6"
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-import-resolver-typescript": "^3.10.1",
+    "eslint-plugin-prettier": "^5.5.4"
   },
   "pnpm": {
     "overrides": {
