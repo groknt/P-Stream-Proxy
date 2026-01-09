@@ -1,20 +1,17 @@
-FROM node:20-alpine as base
+FROM node:25.2.1-alpine as build
 WORKDIR /app
-
-# Build layer
-FROM base as build
-
-RUN npm i -g pnpm
-COPY pnpm-lock.yaml package.json ./
-RUN pnpm install --frozen-lockfile
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN npm install -g pnpm@10.27.0
+COPY package.json pnpm-lock.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 
-# Production layer
-FROM base as production
-
-EXPOSE 3000
+FROM node:25.2.1-alpine as production
+WORKDIR /app
+RUN apk add --no-cache curl
 ENV NODE_ENV=production
 COPY --from=build /app/.output ./.output
-
+EXPOSE 3000
 CMD ["node", ".output/server/index.mjs"]
